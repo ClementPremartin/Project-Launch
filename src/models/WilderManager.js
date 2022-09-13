@@ -1,4 +1,4 @@
-const {getDatabase} = require("../database/utils");
+const {getDatabase, getWilderRepository} = require("../database/utils");
 const Wilder = require("./WilderEntity");
 
 async function initializeWilder() {
@@ -8,7 +8,8 @@ async function initializeWilder() {
 }
 
 async function getWilders() {
-    return;
+    const wilderRepository = await getWilderRepository();
+    return wilderRepository.find();
   }
   
   async function createWilder() {
