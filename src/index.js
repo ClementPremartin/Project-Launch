@@ -1,8 +1,6 @@
 const express = require("express");
-const typeorm = require("typeorm");
 const { getDatabase } = require("./database/utils");
-const { initializeWilder } = require("./models/manager");
-const Wilder = require("./models/Wilder");
+const { initializeWilder } = require("./models/WilderManager");
 
 const app = express();
 

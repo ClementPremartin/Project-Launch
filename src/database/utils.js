@@ -1,5 +1,5 @@
 const typeorm = require("typeorm");
-const Wilder = require("../models/Wilder");
+const Wilder = require("../models/WilderEntity");
 
 const dataSource = new typeorm.DataSource({
     type: "sqlite",

@@ -1,5 +1,5 @@
 const {getDatabase} = require("../database/utils");
-const Wilder = require("./Wilder");
+const Wilder = require("./WilderEntity");
 
 async function initializeWilder() {
     const wilderRepository = (await getDatabase()).getRepository(Wilder);
