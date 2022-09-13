@@ -8,7 +8,10 @@ module.exports = new EntitySchema({
             type: "uuid",
             generated: "uuid"
         },
-        name: {
+        firstname: {
+            type: "text",
+        },
+        lastname: {
             type: "text",
         },
     },

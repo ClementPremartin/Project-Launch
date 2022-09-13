@@ -5,13 +5,16 @@ const WilderController = require("./controller/WilderController");
 
 const app = express();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.send("App running on express server!");
 });
 
 
 const WILDERS_PATH = "/wilders";
-app.get(WILDERS_PATH, WilderController.findAll);
+app.get(WILDERS_PATH, WilderController.findAllWilders);
+app.post(WILDERS_PATH, WilderController.addWilder);
 
 const PORT = 4000;
 
