@@ -9,6 +9,7 @@ const dataSource = new typeorm.DataSource({
     database: "wilersdb.sqlite",
     synchronize: true,
     entities: [Wilder],
+    logging: true,
 });
 
 app.get("/", (req, res) => {
