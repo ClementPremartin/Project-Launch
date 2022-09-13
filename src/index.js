@@ -14,7 +14,10 @@ app.get("/", (req, res) => {
 
 const WILDERS_PATH = "/wilders";
 app.get(WILDERS_PATH, WilderController.findAllWilders);
+app.get(`${WILDERS_PATH}/:id`, WilderController.findWilderById);
 app.post(WILDERS_PATH, WilderController.addWilder);
+app.put(`${WILDERS_PATH}/:id`, WilderController.modifyWilderById);
+app.delete(`${WILDERS_PATH}/:id`, WilderController.deleteWilderById)
 
 const PORT = 4000;
 
