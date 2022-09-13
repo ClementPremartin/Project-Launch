@@ -9,6 +9,16 @@ const dataSource = new typeorm.DataSource({
     logging: ["query", "error"],
 });
 
+let initialized = false;
+async function getDatabase() {
+    if(!initialized) {
+        await dataSource.initialize();
+        initialized = true;
+        console.log("Successfuly connected to database");
+    }
+    return dataSource;
+}
+
 module.exports = {
-    dataSource
+    getDatabase,
 };

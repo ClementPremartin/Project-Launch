@@ -1,16 +1,10 @@
 const express = require("express");
 const typeorm = require("typeorm");
+const { getDatabase } = require("./database/utils");
+const { initializeWilder } = require("./models/manager");
 const Wilder = require("./models/Wilder");
 
 const app = express();
-
-const dataSource = new typeorm.DataSource({
-    type: "sqlite",
-    database: "wilersdb.sqlite",
-    synchronize: true,
-    entities: [Wilder],
-    logging: true,
-});
 
 app.get("/", (req, res) => {
     res.send("App running on express server!");
@@ -19,9 +13,8 @@ app.get("/", (req, res) => {
 const PORT = 4000;
 
 const start = async() => {
-    await dataSource.initialize();
-    await dataSource.getRepository(Wilder).clear();
-    await dataSource.getRepository(Wilder).save({name: "Jeanjean"});
+    await initializeWilder();
+    await getDatabase();
     app.listen(PORT, () => console.log(`Server Running On Port: ${PORT}`));
 }
 
