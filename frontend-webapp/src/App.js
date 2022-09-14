@@ -7,6 +7,7 @@ import wilders from "./data/wilders";
 function App() {
 
   const [wildersStudent] = useState(wilders);
+  console.log(wildersStudent);
 
   return (
     <div>
@@ -24,6 +25,7 @@ function App() {
             firstname={wilder.firstname}
             lastname={wilder.lastname}
             skills={wilder.skills}
+            description={wilder.description}
             />
         ))}
         </section>

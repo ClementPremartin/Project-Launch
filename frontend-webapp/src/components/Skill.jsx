@@ -1,13 +1,13 @@
 import React from 'react';
 import "../App.css";
 
-const Skill = ( {skill} ) => {
+const Skill = ( {skill, rate} ) => {
     return (
         <div>
             <ul className="skills">
               <li>
                 {skill.skill_name}
-                <span className="votes">3</span>
+                <span className="votes">{skill.rate}</span>
               </li>
             </ul>
         </div>
