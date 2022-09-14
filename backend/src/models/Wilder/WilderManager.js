@@ -82,7 +82,7 @@ async function getWilders() {
     if(!skill) {
       throw Error("No existing Skill mathing id");
     }
-    wilder.skill = [...wilder.skill, skill];
+    wilder.skills = [...wilder.skills, skill];
     return wilderRepository.save(wilder);
 }
 

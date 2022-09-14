@@ -1,5 +1,3 @@
-const { DataSource } = require("typeorm");
-const { getRepository } = require("../database/utils");
 const {getWilders, createWilder, putWilder, getWilderById, deleteWilder, addSkillsToWilder} = require("../models/Wilder/WilderManager");
 
 const findAllWilders = async (req, res) => {
