@@ -3,6 +3,7 @@ const { getDatabase } = require("./database/utils");
 const { initializeWilder } = require("./models/Wilder/WilderManager");
 const WilderController = require("./controller/WilderController");
 const { initializeSchool } = require("./models/School/SchoolManager");
+const { initializeSkill } = require("./models/Skill/SkillManager");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.delete(`${WILDERS_PATH}/:id`, WilderController.deleteWilderById)
 const PORT = 4000;
 
 const start = async() => {
+    await initializeSkill();
     await initializeSchool();
     await initializeWilder();
     await getDatabase();

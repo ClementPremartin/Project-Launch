@@ -1,12 +1,13 @@
 const typeorm = require("typeorm");
 const Wilder = require("../models/Wilder/WilderEntity");
 const School = require("../models/School/SchoolEntity");
+const Skill = require("../models/Skill/SkillEntity");
 
 const dataSource = new typeorm.DataSource({
     type: "sqlite",
     database: "wilersdb.sqlite",
     synchronize: true,
-    entities: [Wilder, School],
+    entities: [Wilder, School, Skill],
     logging: ["query", "error"],
 });
 
@@ -20,16 +21,11 @@ async function getDatabase() {
     return dataSource;
 }
 
-async function getWilderRepository() {
-    return(await getDatabase()).getRepository(Wilder);
-}
-
-async function getSchoolRepository() {
-    return(await getDatabase()).getRepository(School);
+async function getRepository(repo) {
+    return(await getDatabase()).getRepository(repo);
 }
 
 module.exports = {
     getDatabase,
-    getWilderRepository,
-    getSchoolRepository,
+    getRepository,
 };

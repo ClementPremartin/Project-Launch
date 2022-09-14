@@ -1,8 +1,9 @@
-const {getWilderRepository} = require("../../database/utils");
+const {getRepository} = require("../../database/utils");
 const { getSchoolByCity } = require("../School/SchoolManager");
+const Wilder = require("../Wilder/WilderEntity");
 
 async function initializeWilder() {
-  const wilderRepository = await getWilderRepository();
+  const wilderRepository = await getRepository(Wilder);
     await wilderRepository.clear();
     const lyonSchool = await getSchoolByCity("Lyon");
     const brestSchool = await getSchoolByCity("Brest");
@@ -23,12 +24,12 @@ async function initializeWilder() {
 }
 
 async function getWilders() {
-    const wilderRepository = await getWilderRepository();
+    const wilderRepository = await getRepository(Wilder);
     return wilderRepository.find();
   }
 
   async function getWilderById(userId) {
-    const wilderRepository = await getWilderRepository();
+    const wilderRepository = await getRepository(Wilder);
     const finalWilder = wilderRepository.findOne({
       where: {
         id: userId
@@ -39,14 +40,14 @@ async function getWilders() {
   }
 
   async function createWilder(firstname, lastname) {
-    const wilderRepository = await getWilderRepository();
+    const wilderRepository = await getRepository(Wilder);
     const newWilder = wilderRepository.create({firstname, lastname});
     await wilderRepository.save(newWilder);
     return newWilder;
   }
 
   async function putWilder(id, firstname, lastname) {
-    const wilderRepository = await getWilderRepository();
+    const wilderRepository = await getRepository(Wilder);
     const wilderModifications = await wilderRepository.findOneBy({id});
     if(!wilderModifications) {
       throw Error("No existing Wilder")
@@ -59,7 +60,7 @@ async function getWilders() {
   }
 
   async function deleteWilder(id) {
-    const wilderRepository = await getWilderRepository();
+    const wilderRepository = await getRepository(Wilder);
     const existingWilder = await wilderRepository.findOneBy({id});
     if(!existingWilder){
       throw Error("No existing Wilder matching ID");
