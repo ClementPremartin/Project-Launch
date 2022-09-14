@@ -23,7 +23,7 @@ function App() {
             key={wilder.id}
             firstname={wilder.firstname}
             lastname={wilder.lastname}
-            skills={wilder.skill}
+            skills={wilder.skills}
             />
         ))}
         </section>

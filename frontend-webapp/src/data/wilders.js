@@ -6,7 +6,7 @@ const wilders = [{
         id: "17c702f5-6732-4dec-bd6f-5f3834829007",
         city_name: "Lyon"
     },
-    skill: [
+    skills: [
         {
             id: "9af758f9-2f01-4f3e-bbba-9bf0dec5ef60",
             skill_name: "Java"
@@ -25,7 +25,7 @@ const wilders = [{
         id: "d54ffaec-5d78-4539-b2b0-e7f05e7e7029",
         city_name: "Brest"
     },
-    skill: [
+    skills: [
         {
             id: "9af758f9-2f01-4f3e-bbba-9bf0dec5ef60",
             skill_name: "Java"
