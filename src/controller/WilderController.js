@@ -1,4 +1,4 @@
-const {getWilders, createWilder, putWilder, getWilderById, deleteWilder} = require("../models/WilderManager");
+const {getWilders, createWilder, putWilder, getWilderById, deleteWilder} = require("../models/Wilder/WilderManager");
 
 const findAllWilders = async (req, res) => {
     const wilders = await getWilders();

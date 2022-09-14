@@ -15,4 +15,11 @@ module.exports = new EntitySchema({
             type: "text",
         },
     },
+    relations: {
+        school: {
+            target: "school",
+            type: "many-to-one",
+            eager: true,
+        }
+    }
 });

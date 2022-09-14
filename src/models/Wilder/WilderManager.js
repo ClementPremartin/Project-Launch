@@ -1,9 +1,25 @@
-const {getWilderRepository} = require("../database/utils");
+const {getWilderRepository} = require("../../database/utils");
+const { getSchoolByCity } = require("../School/SchoolManager");
 
 async function initializeWilder() {
   const wilderRepository = await getWilderRepository();
     await wilderRepository.clear();
-    await wilderRepository.save({firstname: "Philippe", lastname: "LeBrigant"});
+    const lyonSchool = await getSchoolByCity("Lyon");
+    const brestSchool = await getSchoolByCity("Brest");
+    await wilderRepository.save(
+        {
+          firstname: "Philippe", 
+          lastname: "LeBrigant", 
+          school: lyonSchool
+        }
+      );
+      await wilderRepository.save(
+        {
+          firstname: "Jeanjean", 
+          lastname: "Bon", 
+          school: brestSchool
+        }
+      );
 }
 
 async function getWilders() {
