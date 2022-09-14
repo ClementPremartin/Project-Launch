@@ -1,4 +1,6 @@
-const {getWilders, createWilder, putWilder, getWilderById, deleteWilder} = require("../models/Wilder/WilderManager");
+const { DataSource } = require("typeorm");
+const { getRepository } = require("../database/utils");
+const {getWilders, createWilder, putWilder, getWilderById, deleteWilder, addSkillsToWilder} = require("../models/Wilder/WilderManager");
 
 const findAllWilders = async (req, res) => {
     const wilders = await getWilders();
@@ -38,10 +40,28 @@ const deleteWilderById = async (req, res) => {
     }
 }
 
+const addSkills = async (req, res) => {
+    const {id: wilderId} = req.params;
+    const {skillId} = req.body;
+
+    if(!skillId) {
+        res.status(404).send({error: "Skill Id is required"});
+    } else {
+        try {
+            const updatedWilder = await addSkillsToWilder(wilderId, skillId);
+            res.json(updatedWilder).status(201);
+        } catch(error) {
+            res.status(404).json({error: error.message})
+        }
+    }
+}
+
+
 module.exports = {
     findAllWilders,
     addWilder,
     modifyWilderById,
     findWilderById,
-    deleteWilderById
+    deleteWilderById,
+    addSkills
 }

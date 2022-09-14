@@ -19,7 +19,9 @@ app.get(WILDERS_PATH, WilderController.findAllWilders);
 app.get(`${WILDERS_PATH}/:id`, WilderController.findWilderById);
 app.post(WILDERS_PATH, WilderController.addWilder);
 app.put(`${WILDERS_PATH}/:id`, WilderController.modifyWilderById);
-app.delete(`${WILDERS_PATH}/:id`, WilderController.deleteWilderById)
+app.delete(`${WILDERS_PATH}/:id`, WilderController.deleteWilderById);
+
+app.post(`${WILDERS_PATH}/:id/skills`, WilderController.addSkills);
 
 const PORT = 4000;
 
