@@ -17,6 +17,7 @@ function App() {
       </header>
       <main className="container">
             <h2>Wilders</h2>
+            <section className="card-row">
         {wildersStudent.map((wilder) => (
           <Wilder
             key={wilder.id}
@@ -25,6 +26,7 @@ function App() {
             skills={wilder.skill}
             />
         ))}
+        </section>
       </main>
       <footer>
         <div className="container">
