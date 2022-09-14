@@ -2,15 +2,13 @@ import React from 'react';
 import Skill from "./Skill";
 import Avatar from '../assets/avatar.png';
 
-const Wilder = ( {name, skills} ) => {
-    console.log(skills);
+const Wilder = ( {wilder, firstname, lastname, skills} ) => {
     return (
         <div>
-            
             <section className="card-row">
                 <article className="card">
-                <img src={Avatar} alt={`${name} profile`} />
-                <h3>{name}</h3>
+                <img src={Avatar} alt={`${firstname} profile`} />
+                <h3>{`${firstname} ${lastname}`}</h3>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -18,7 +16,7 @@ const Wilder = ( {name, skills} ) => {
                     nisi ut aliquip ex ea commodo consequat.
                 </p>
             <h4>Wild Skills</h4>
-            {skills.map((skill) => <Skill skill={skill}/>)}
+            {skills.map((skill) => <Skill key={skill.id} skill={skill}/>)}
           </article>
         </section>
     </div>

@@ -1,11 +1,12 @@
-import Wilder from "./components/Wilder";
-import './App.css';
 import { useState } from "react";
+import './App.css';
+
+import Wilder from "./components/Wilder";
+import wilders from "./data/wilders";
 
 function App() {
 
-  const [nameArr] = useState(["Jeanjean Bon", "Jane Doe", "Manu triment", "Baby Bliothèque"]);
-  const [skills] = useState(["JS", "Java", "PHP", "Ruby", "HTML"])
+  const [wildersStudent] = useState(wilders);
 
   return (
     <div>
@@ -16,8 +17,13 @@ function App() {
       </header>
       <main className="container">
             <h2>Wilders</h2>
-        {nameArr.map((name) => (
-          <Wilder name={name} skills={skills} />
+        {wildersStudent.map((wilder) => (
+          <Wilder
+            key={wilder.id}
+            firstname={wilder.firstname}
+            lastname={wilder.lastname}
+            skills={wilder.skill}
+            />
         ))}
       </main>
       <footer>
