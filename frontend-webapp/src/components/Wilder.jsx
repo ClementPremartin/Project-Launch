@@ -4,7 +4,7 @@ import Avatar from '../assets/avatar.png';
 import "../App.css";
 import "./wilder.css";
 
-const Wilder = ( {firstname, lastname, skills, description} ) => {
+const Wilder = ( {firstname, lastname, skills, description, rate} ) => {
     return (
         <article className="card">
             <img src={Avatar} alt={`${firstname} profile`} />

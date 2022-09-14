@@ -7,7 +7,6 @@ import wilders from "./data/wilders";
 function App() {
 
   const [wildersStudent] = useState(wilders);
-  console.log(wildersStudent);
 
   return (
     <div>
