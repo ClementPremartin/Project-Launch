@@ -12,13 +12,15 @@ async function initializeWilder() {
         {
           firstname: "Philippe",
           lastname: "LeBrigant",
-          school: lyonSchool
+          school: lyonSchool,
+          description: "Je suis passionné de maquette en allumette et j'apprécie particulièrement lire des mangas."
         }
       );
       await wilderRepository.save(
         {
           firstname: "Jeanjean",
-          lastname: "Bon", 
+          lastname: "Bon",
+          description: "Je suis dev spécialisé dans le html. J'aime compter les étoiles. Je me nourris exclusivement de carotte.",
           school: brestSchool
         }
       );
@@ -40,14 +42,14 @@ async function getWilders() {
     return finalWilder;
   }
 
-  async function createWilder(firstname, lastname) {
+  async function createWilder(firstname, lastname, description) {
     const wilderRepository = await getRepository(Wilder);
-    const newWilder = wilderRepository.create({firstname, lastname});
+    const newWilder = wilderRepository.create({firstname, lastname, description});
     await wilderRepository.save(newWilder);
     return newWilder;
   }
 
-  async function putWilder(id, firstname, lastname) {
+  async function putWilder(id, firstname, lastname, description) {
     const wilderRepository = await getRepository(Wilder);
     const wilderModifications = await wilderRepository.findOneBy({id});
     if(!wilderModifications) {
@@ -56,7 +58,8 @@ async function getWilders() {
     return wilderRepository.save({
       id,
       firstname,
-      lastname
+      lastname,
+      description
     });
   }
 

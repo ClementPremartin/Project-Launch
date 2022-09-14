@@ -12,19 +12,19 @@ const findWilderById = async (req, res) => {
 }
 
 const addWilder = async (req, res) => {
-    const {firstname, lastname} = req.body;
+    const {firstname, lastname, description} = req.body;
     if(!firstname || !lastname) {
         res.status(400).json({error: "Firstname and Lasname are required."})
     } else {
-        const newWilder = await createWilder(firstname, lastname);
+        const newWilder = await createWilder(firstname, lastname, description);
         res.status(201).send(newWilder);
     }
 }
 
 const modifyWilderById = async (req, res) => {
     const { id } = req.params;
-    const {firstname, lastname} = req.body;
-        const modifyWilder = await putWilder(id, firstname, lastname);
+    const {firstname, lastname, description} = req.body;
+        const modifyWilder = await putWilder(id, firstname, lastname, description);
         res.status(200).json(modifyWilder);
 }
 
