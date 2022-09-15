@@ -4,45 +4,44 @@ import axios from "axios";
 import { SectionTitle, CardRow } from "./Home.styled";
 
 import Wilder from "../components/Wilder/Wilder";
+import Loader from "../components/Loader/Loader";
 
 const Home = () => {
-    const [wildersStudent, setWildersStudent] = useState([]);
+  const [wildersStudent, setWildersStudent] = useState([]);
+  const [timeOut, setTimeOut] = useState(true);
 
-    useEffect(() => {
-      axios
-        .get('/wilders')
-          .then((res) => {
-            setWildersStudent(res.data)
-          }).catch((err) => {
-            console.log(err);
-          })
-      // (async () => {
-      //   try {
-      //         const response = await axios.get('/wilder')
-      //         setWildersStudent(response.data);
-      //   } catch (error) {
-      //         console.log(error.response.body);
-      //   }
-      // })
-    }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get("/wilders");
+      setWildersStudent(response.data);
+      setTimeOut(false);
+    })();
+  }, []);
 
-    return (
-        <>
-        {console.log(wildersStudent)}
-            <SectionTitle>Wilders</SectionTitle>
-            <CardRow>
-              {wildersStudent && wildersStudent.map((wilder) => (
-                <Wilder
-                  key={wilder.id}
-                  firstname={wilder.firstname}
-                  lastname={wilder.lastname}
-                  skills={wilder.skills}
-                  description={wilder.description}
-                />
-              ))}
+  return (
+    <>
+      <SectionTitle>Wilders</SectionTitle>
+      {timeOut ? (
+        <Loader />
+      ) : wildersStudent.length > 0 ? (
+        <CardRow>
+          {wildersStudent &&
+            wildersStudent.map((wilder) => (
+              <Wilder
+                key={wilder.id}
+                firstname={wilder.firstname}
+                lastname={wilder.lastname}
+                skills={wilder.skills}
+                description={wilder.description}
+              />
+            ))}
         </CardRow>
-        </>
-    );
+      ) : (
+        "Aucun wilder a afficher"
+      )}
+    </>
+  );
 };
 
 export default Home;
+
