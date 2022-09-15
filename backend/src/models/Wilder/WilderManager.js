@@ -1,5 +1,6 @@
 const {getRepository} = require("../../database/utils");
 const { getSchoolByCity } = require("../School/SchoolManager");
+const { getSkillBySkillName } = require("../Skill/SkillManager");
 const Wilder = require("../Wilder/WilderEntity");
 const Skill = require("../Skill/SkillEntity");
 
@@ -8,12 +9,16 @@ async function initializeWilder() {
     await wilderRepository.clear();
     const lyonSchool = await getSchoolByCity("Lyon");
     const brestSchool = await getSchoolByCity("Brest");
+    const phpSkill = await getSkillBySkillName("PHP");
+    const javaSkill = await getSkillBySkillName("Java");
+    const jsSkill = await getSkillBySkillName("JS");
     await wilderRepository.save(
         {
           firstname: "Philippe",
           lastname: "LeBrigant",
           school: lyonSchool,
-          description: "Je suis passionné de maquette en allumette et j'apprécie particulièrement lire des mangas."
+          description: "Je suis passionné de maquette en allumette et j'apprécie particulièrement lire des mangas.",
+          skills: [phpSkill, javaSkill]
         }
       );
       await wilderRepository.save(
@@ -21,7 +26,8 @@ async function initializeWilder() {
           firstname: "Jeanjean",
           lastname: "Bon",
           description: "Je suis dev spécialisé dans le html. J'aime compter les étoiles. Je me nourris exclusivement de carotte.",
-          school: brestSchool
+          school: brestSchool,
+          skills: [jsSkill, javaSkill, phpSkill]
         }
       );
 }

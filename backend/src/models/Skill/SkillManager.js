@@ -9,12 +9,15 @@ async function initializeSkill() {
       await skillRepository.clear();
       await skillRepository.save({
         skill_name: "JS",
+        rate: 5
       });
       await skillRepository.save({
         skill_name: "Java",
+        rate: 1
       });
       await skillRepository.save({
         skill_name: "PHP",
+        rate: 3
       });
   }
 
