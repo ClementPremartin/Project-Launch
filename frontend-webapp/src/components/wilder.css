@@ -10,12 +10,13 @@ h3 {
  * card-layout. css
  */
  .card-row {
-    display: grid;
-    grid-template-columns: repeat(3, 32%);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
   .card {
+    width: 180px;
     padding: 20px;
     border: 1px solid #c9c9c9;
     border-radius: 7px;

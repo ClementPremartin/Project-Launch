@@ -67,8 +67,8 @@ footer {
 
 .card .skills .votes {
    /* Center the content */
-   align-items: center;
    display: flex;
+   align-items: center;
    justify-content: center;
 
    /* Colors */

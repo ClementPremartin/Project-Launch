@@ -18,15 +18,15 @@ function App() {
       <main className="container">
             <h2>Wilders</h2>
             <section className="card-row">
-        {wildersStudent.map((wilder) => (
-          <Wilder
-            key={wilder.id}
-            firstname={wilder.firstname}
-            lastname={wilder.lastname}
-            skills={wilder.skills}
-            description={wilder.description}
-            />
-        ))}
+              {wildersStudent.map((wilder) => (
+                <Wilder
+                  key={wilder.id}
+                  firstname={wilder.firstname}
+                  lastname={wilder.lastname}
+                  skills={wilder.skills}
+                  description={wilder.description}
+                />
+              ))}
         </section>
       </main>
       <footer>
