@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./App.css";
+import { Container, Footer, Header, MainContainer, PageTitle} from "./App.styled";
+import { Paragraph } from "./styles/base-styles";
 
 import Wilder from "./components/Wilder";
 import wilders from "./data/wilders";
@@ -10,13 +11,13 @@ function App() {
 
   return (
     <div>
-      <header>
-        <div className="container">
+      <Header>
+        <Container>
             <h1>Wilders Book</h1>
-        </div>
-      </header>
-      <main className="container">
-            <h2>Wilders</h2>
+        </Container>
+      </Header>
+      <MainContainer>
+            <PageTitle>Wilders</PageTitle>
             <section className="card-row">
               {wildersStudent.map((wilder) => (
                 <Wilder
@@ -28,12 +29,12 @@ function App() {
                 />
               ))}
         </section>
-      </main>
-      <footer>
-        <div className="container">
-          <p>&copy; 2022 Wild Code School</p>
-        </div>
-      </footer>
+      </MainContainer>
+      <Footer>
+        <Container>
+          <Paragraph>&copy; 2022 Wild Code School</Paragraph>
+        </Container>
+      </Footer>
     </div>
   );
 }

@@ -16,26 +16,6 @@ h2 {
   font-size: 28px;
 }
 
-p {
-  margin: 0 0 1.15em;
-}
-
-.container {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 24px;
-}
-
-header {
-  background-color: #F76C6C;
-  color: #fff;
-}
-
-footer {
-  border-top: 2px solid #F76C6C;
-}
-
 .button {
   /* Reset text link default */
   text-decoration: none;
