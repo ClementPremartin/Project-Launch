@@ -5,9 +5,8 @@ import { MAIN_THEME_COLOR } from "../../styles/style_constants";
 export const Card = styled.article`
   width: 180px;
   padding: 20px;
-  border: 1px solid #c9c9c9;
   border-radius: 7px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 `;
 
 export const CardImg = styled.img`
@@ -55,3 +54,4 @@ export const CardSkillsList = styled.ul`
     padding: 2px;
   }
 `;
+
