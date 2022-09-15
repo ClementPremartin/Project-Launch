@@ -1,11 +1,11 @@
 # Work-study live coding 2022-09
 
-## Back-end (Node.js API)
+## Backend (Node.js API)
 
 Install dependencies:
 
 ```
-cd back-end
+cd backend
 npm install
 ```
 
@@ -15,12 +15,12 @@ Start server in development mode:
 npm run start:watch
 ```
 
-## Web app front-end (Create React App)
+## Web app frontend (Create React App)
 
 Install dependencies:
 
 ```
-cd web-app
+cd frontend-webapp
 npm install
 ```
 
