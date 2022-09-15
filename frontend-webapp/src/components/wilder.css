@@ -9,11 +9,6 @@ h3 {
 /*
  * card-layout. css
  */
- .card-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
 
   .card {
     width: 180px;
