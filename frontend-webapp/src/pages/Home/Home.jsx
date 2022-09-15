@@ -3,8 +3,8 @@ import axios from "axios";
 
 import { SectionTitle, CardRow } from "./Home.styled";
 
-import Wilder from "../components/Wilder/Wilder";
-import Loader from "../components/Loader/Loader";
+import Wilder from "../../components/Wilder/Wilder";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const [wildersStudent, setWildersStudent] = useState([]);
@@ -21,6 +21,7 @@ const Home = () => {
   return (
     <>
       <SectionTitle>Wilders</SectionTitle>
+
       {timeOut ? (
         <Loader />
       ) : wildersStudent.length > 0 ? (
