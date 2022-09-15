@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { SectionTitle, CardRow } from "./Home.styled";
 
-import Wilder from "../components/Wilder";
+import Wilder from "../components/Wilder/Wilder";
 
 import wilders from "../data/wilders";
 

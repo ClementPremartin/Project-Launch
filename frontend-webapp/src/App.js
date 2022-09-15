@@ -1,4 +1,4 @@
-import { Container, Footer, Header, MainContainer} from "./App.styled";
+import { Container, Footer, Header, MainContainer, PageTitle} from "./App.styled";
 import { Paragraph } from "./styles/base-styles";
 
 import Home from "./pages/Home";
@@ -8,7 +8,7 @@ function App() {
     <>
       <Header>
         <Container>
-            <h1>Wilders Book</h1>
+            <PageTitle>Wilders Book</PageTitle>
         </Container>
       </Header>
       <MainContainer>
