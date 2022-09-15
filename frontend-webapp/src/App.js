@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './App.css';
+import "./App.css";
 
 import Wilder from "./components/Wilder";
 import wilders from "./data/wilders";

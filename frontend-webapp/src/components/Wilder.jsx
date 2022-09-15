@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import Skill from "./Skill";
-import Avatar from '../assets/avatar.png';
+import Avatar from "../assets/avatar.png";
 import "../App.css";
 import "./wilder.css";
 
