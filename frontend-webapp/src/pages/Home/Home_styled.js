@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { baseTitleStyles } from "../../styles/base-styles";
+import { baseTitleStyles } from "../../styles/base_styles";
 
 export const SectionTitle = styled.h2`
   ${baseTitleStyles}

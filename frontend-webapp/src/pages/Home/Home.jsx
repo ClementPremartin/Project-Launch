@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { SectionTitle, CardRow } from "./Home.styled";
+import { SectionTitle, CardRow } from "./Home_styled";
 
 import Wilder from "../../components/Wilder/Wilder";
 import Loader from "../../components/Loader/Loader";

@@ -8,7 +8,7 @@ import {
 
 import { Routes, Route } from "react-router-dom";
 
-import { Paragraph } from "./styles/base-styles";
+import { Paragraph } from "./styles/base_styles";
 
 import Home from "./pages/Home/Home";
 import CreateWilder from "./pages/CreateWilder/CreateWilder";
