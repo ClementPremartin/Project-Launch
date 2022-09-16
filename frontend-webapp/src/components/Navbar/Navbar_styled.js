@@ -11,7 +11,6 @@ export const LinkStyled = styled.div`
   padding: 10px;
   margin-right: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  text-decoration: none;
 
   &:hover {
     opacity: 80%;
