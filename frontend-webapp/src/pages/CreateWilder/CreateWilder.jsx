@@ -1,5 +1,11 @@
+import FormWilder from "../../components/FormWilder/FormWilder";
+
 const CreateWilder = () => {
-  return <div>CreateWilder</div>;
+  return (
+    <>
+      <FormWilder />
+    </>
+  );
 };
 
 export default CreateWilder;
