@@ -11,11 +11,11 @@ export const LinkStyled = styled.div`
   padding: 10px;
   margin-right: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  transition: opacity 0.2s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   &:hover {
     opacity: 80%;
-    transition: 0.2s ease-in;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 `;
 
