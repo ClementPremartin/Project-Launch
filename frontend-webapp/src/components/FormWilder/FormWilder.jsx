@@ -1,6 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import {
+  FormContainer,
+  LabelForm,
+  CardLabel,
+  CardTitle,
+  Button,
+  InputForm,
+  SelectForm,
+} from "./FormWilder_styled";
 
 export default function App() {
   const {
@@ -26,54 +35,57 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="firstname">
-          Prénom
-          <input
-            type="text"
-            placeholder="Jeanjean"
-            {...register("firstname", {
-              required: true,
-              minLength: 2,
-              maxLength: 35,
-            })}
-          />
-        </label>
-        <label htmlFor="lastname">
-          Nom
-          <input
-            type="text"
-            placeholder="Bon"
-            {...register("lastname", {
-              required: true,
-              minLength: 2,
-              maxLength: 35,
-            })}
-          />
-        </label>
-        <label htmlFor="city_name">
-          Campus
-          <select
-            name="city_name"
-            {...register("city_name")}
-            className={`form-control ${errors.city_name ? "is-invalid" : ""}`}
-          >
-            <option defaultValue="Lyon">Lyon</option>
-            <option value="Brest">Brest</option>
-          </select>
-        </label>
-        <label htmlFor="description">
-          Description
-          <input
-            type="text"
-            placeholder="Ecrivez votre description"
-            {...register("description", {
-              maxLength: 250,
-            })}
-          />
-        </label>
-        <input type="submit" />
-      </form>
+      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <CardTitle>Créer un Wilder</CardTitle>
+        <CardLabel>
+          <LabelForm htmlFor="firstname">
+            Prénom
+            <InputForm
+              type="text"
+              placeholder="Jeanjean"
+              {...register("firstname", {
+                required: true,
+                minLength: 2,
+                maxLength: 35,
+              })}
+            />
+          </LabelForm>
+          <LabelForm htmlFor="lastname">
+            Nom
+            <InputForm
+              type="text"
+              placeholder="Bon"
+              {...register("lastname", {
+                required: true,
+                minLength: 2,
+                maxLength: 35,
+              })}
+            />
+          </LabelForm>
+          <LabelForm htmlFor="city_name">
+            Campus
+            <SelectForm
+              name="city_name"
+              {...register("city_name")}
+              className={`form-control ${errors.city_name ? "is-invalid" : ""}`}
+            >
+              <option defaultValue="Lyon">Lyon</option>
+              <option value="Brest">Brest</option>
+            </SelectForm>
+          </LabelForm>
+          <LabelForm htmlFor="description">
+            Description
+            <InputForm
+              type="text"
+              placeholder="Ecrivez votre description"
+              {...register("description", {
+                maxLength: 250,
+              })}
+            />
+          </LabelForm>
+          <Button type="submit" />
+        </CardLabel>
+      </FormContainer>
     </>
   );
 }

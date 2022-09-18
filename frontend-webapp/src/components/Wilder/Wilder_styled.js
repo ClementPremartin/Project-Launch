@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { baseTitleStyles, Paragraph } from "../../styles/base_styles";
-import { MAIN_THEME_COLOR } from "../../styles/style_constants";
+import { FONT_COLOR, MAIN_THEME_COLOR } from "../../styles/style_constants";
 
 export const Card = styled.article`
   width: 180px;
@@ -28,7 +28,7 @@ export const CardSkillsTitle = styled.h4`
 `;
 
 const cardPropertiesStyled = css`
-  color: #757575;
+  color: ${FONT_COLOR};
   line-height: 1.5;
 `;
 
