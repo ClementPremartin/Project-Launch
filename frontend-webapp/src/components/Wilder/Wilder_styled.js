@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 import { baseTitleStyles, Paragraph } from "../../styles/base_styles";
-import { FONT_COLOR, MAIN_THEME_COLOR } from "../../styles/style_constants";
+import {
+  FONT_COLOR,
+  MAIN_THEME_COLOR,
+  SHADOW_STYLE,
+} from "../../styles/style_constants";
 
 export const Card = styled.article`
   width: 180px;
@@ -53,5 +57,20 @@ export const CardSkillsList = styled.ul`
     border-radius: 4px;
     padding: 2px;
   }
+`;
+
+export const CityStyle = styled.p`
+  background-color: ${MAIN_THEME_COLOR};
+  color: white;
+  padding: 5px;
+  border-radius: 8px;
+  margin-top: 0px;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+`;
+
+export const CityContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 

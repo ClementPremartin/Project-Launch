@@ -6,14 +6,19 @@ import {
   CardSkillsList,
   CardSkillsTitle,
   CardTitle,
+  CityStyle,
+  CityContainer,
 } from "./Wilder_styled";
 import { Paragraph } from "../../styles/base_styles";
 
 import Avatar from "../../assets/avatar.png";
 
-const Wilder = ({ firstname, lastname, skills, description, rate }) => {
+const Wilder = ({ firstname, lastname, skills, description, school }) => {
   return (
     <Card>
+      <CityContainer>
+        <CityStyle>{`Campus: ${school.city_name}`}</CityStyle>
+      </CityContainer>
       <CardImg src={Avatar} alt={`${firstname} profile`} />
       <CardTitle>{`${firstname} ${lastname}`}</CardTitle>
       <Paragraph>{description}</Paragraph>
@@ -30,3 +35,4 @@ const Wilder = ({ firstname, lastname, skills, description, rate }) => {
 };
 
 export default Wilder;
+

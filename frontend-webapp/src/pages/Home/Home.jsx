@@ -34,6 +34,7 @@ const Home = () => {
                 lastname={wilder.lastname}
                 skills={wilder.skills}
                 description={wilder.description}
+                school={wilder.school}
               />
             ))}
         </CardRow>

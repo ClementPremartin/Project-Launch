@@ -9,7 +9,6 @@ export const FormContainer = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${SECOND_THEME_COLOR};
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   height: 480px;
@@ -51,7 +50,9 @@ export const InputForm = styled.input`
   border: none;
   padding: 8px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  background-color: ${SECOND_THEME_COLOR};
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
 export const SelectForm = styled.select`
@@ -59,6 +60,8 @@ export const SelectForm = styled.select`
   border: none;
   padding: 8px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  background-color: ${SECOND_THEME_COLOR};
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
