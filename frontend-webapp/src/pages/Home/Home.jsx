@@ -20,6 +20,7 @@ const Home = () => {
 
   return (
     <>
+      {console.log(wildersStudent)}
       <SectionTitle>Wilders</SectionTitle>
 
       {timeOut ? (

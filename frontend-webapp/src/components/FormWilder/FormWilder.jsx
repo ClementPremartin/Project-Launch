@@ -62,12 +62,12 @@ export default function App() {
               })}
             />
           </LabelForm>
-          <LabelForm htmlFor="city_name">
+          <LabelForm htmlFor="school">
             Campus
             <SelectForm
-              name="city_name"
-              {...register("city_name")}
-              className={`form-control ${errors.city_name ? "is-invalid" : ""}`}
+              name="school"
+              {...register("school")}
+              className={`form-control ${errors.school ? "is-invalid" : ""}`}
             >
               <option defaultValue="Lyon">Lyon</option>
               <option value="Brest">Brest</option>
