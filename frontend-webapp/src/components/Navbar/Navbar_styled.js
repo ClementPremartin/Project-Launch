@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const LinkContainer = styled.div`
   display: flex;
@@ -17,5 +18,11 @@ export const LinkStyled = styled.div`
   &:hover {
     opacity: 80%;
   }
+`;
+
+export const LinkPage = styled(Link)`
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #583333;
 `;
 

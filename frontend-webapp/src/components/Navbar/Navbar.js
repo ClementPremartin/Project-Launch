@@ -1,20 +1,18 @@
-import { Link } from "react-router-dom";
-import { LinkStyled, LinkContainer } from "./Navbar_styled";
-import "./Navbar.css";
+import { LinkStyled, LinkContainer, LinkPage } from "./Navbar_styled";
 
 const Navbar = () => {
   return (
     <>
       <LinkContainer>
         <LinkStyled>
-          <Link to="/" className="navbarLink">
+          <LinkPage to="/" className="navbarLink">
             Home
-          </Link>
+          </LinkPage>
         </LinkStyled>
         <LinkStyled>
-          <Link to="/create-wilder" className="navbarLink">
+          <LinkPage to="/create-wilder" className="navbarLink">
             Nouveau Wilder
-          </Link>
+          </LinkPage>
         </LinkStyled>
       </LinkContainer>
     </>
