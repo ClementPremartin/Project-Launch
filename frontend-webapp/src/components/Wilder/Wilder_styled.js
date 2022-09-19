@@ -1,10 +1,6 @@
 import styled, { css } from "styled-components";
 import { baseTitleStyles, Paragraph } from "../../styles/base_styles";
-import {
-  FONT_COLOR,
-  MAIN_THEME_COLOR,
-  SHADOW_STYLE,
-} from "../../styles/style_constants";
+import { FONT_COLOR, MAIN_THEME_COLOR } from "../../styles/style_constants";
 
 export const Card = styled.article`
   width: 180px;
