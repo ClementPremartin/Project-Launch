@@ -17,7 +17,7 @@ const Wilder = ({ firstname, lastname, skills, description, school }) => {
   return (
     <Card>
       <CityContainer>
-        {/* <CityStyle>{`Campus: ${school.city_name}`}</CityStyle> */}
+        <CityStyle>{`Campus: ${school.city_name}`}</CityStyle>
       </CityContainer>
       <CardImg src={Avatar} alt={`${firstname} profile`} />
       <CardTitle>{`${firstname} ${lastname}`}</CardTitle>
