@@ -1,9 +1,9 @@
-const express = require("express");
-const { getDatabase } = require("./database/utils");
-const { initializeWilder } = require("./models/Wilder/WilderManager");
-const WilderController = require("./controller/WilderController");
-const { initializeSchool } = require("./models/School/SchoolManager");
-const { initializeSkill } = require("./models/Skill/SkillManager");
+import express from "express";
+import { getDatabase } from "./database/utils";
+import { initializeWilder } from "./models/Wilder/WilderManager";
+import WilderController from "./controller/WilderController";
+import { initializeSchool } from "./models/School/SchoolManager";
+import { initializeSkill } from "./models/Skill/SkillManager";
 
 const app = express();
 
