@@ -1,41 +1,42 @@
-import { useState } from "react";
-import './App.css';
+import {
+  Container,
+  Footer,
+  Header,
+  MainContainer,
+  PageTitle,
+} from "./App.styled";
 
-import Wilder from "./components/Wilder";
-import wilders from "./data/wilders";
+import { Routes, Route } from "react-router-dom";
+
+import { Paragraph } from "./styles/base_styles";
+
+import Home from "./pages/Home/Home";
+import CreateWilder from "./pages/CreateWilder/CreateWilder";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-
-  const [wildersStudent] = useState(wilders);
-
   return (
-    <div>
-      <header>
-        <div className="container">
-            <h1>Wilders Book</h1>
-        </div>
-      </header>
-      <main className="container">
-            <h2>Wilders</h2>
-            <section className="card-row">
-        {wildersStudent.map((wilder) => (
-          <Wilder
-            key={wilder.id}
-            firstname={wilder.firstname}
-            lastname={wilder.lastname}
-            skills={wilder.skills}
-            description={wilder.description}
-            />
-        ))}
-        </section>
-      </main>
-      <footer>
-        <div className="container">
-          <p>&copy; 2022 Wild Code School</p>
-        </div>
-      </footer>
-    </div>
+    <>
+      <Header>
+        <Container>
+          <PageTitle>Wilders Book</PageTitle>
+          <Navbar />
+        </Container>
+      </Header>
+      <MainContainer>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-wilder" element={<CreateWilder />} />
+        </Routes>
+      </MainContainer>
+      <Footer>
+        <Container>
+          <Paragraph>&copy; 2022 Wild Code School</Paragraph>
+        </Container>
+      </Footer>
+    </>
   );
 }
 
 export default App;
+
