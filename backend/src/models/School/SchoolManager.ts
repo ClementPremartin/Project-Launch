@@ -1,8 +1,8 @@
-const {getRepository} = require("../../database/utils");
-const School = require("../School/SchoolEntity");
-const Wilder = require("../Wilder/WilderEntity");
+import { getRepository } from "../../database/utils";
+import School from "../School/SchoolEntity";
+import Wilder from "../Wilder/WilderEntity";
 
-async function initializeSchool() {
+async function initializeSchool(): Promise<void> {
     const schoolRepository = await getRepository(School);
     const wilderRepository = await getRepository(Wilder);
       await wilderRepository.clear();
@@ -15,12 +15,12 @@ async function initializeSchool() {
       });
   }
 
-async function getSchoolByCity(schoolCity) {
+async function getSchoolByCity(schoolCity: string) {
   const schoolRepository = await getRepository(School);
   return schoolRepository.findOneBy({city_name: schoolCity});
 }
 
-  module.exports = {
+  export {
     initializeSchool,
     getSchoolByCity,
   }

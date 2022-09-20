@@ -1,7 +1,7 @@
 import express from "express";
 import { getDatabase } from "./database/utils";
+import { findAllWilders, findWilderById, addWilder, modifyWilderById, deleteWilderById, addSkills} from "./controller/WilderController";
 import { initializeWilder } from "./models/Wilder/WilderManager";
-import WilderController from "./controller/WilderController";
 import { initializeSchool } from "./models/School/SchoolManager";
 import { initializeSkill } from "./models/Skill/SkillManager";
 
@@ -15,13 +15,13 @@ app.get("/", (req, res) => {
 
 
 const WILDERS_PATH = "/wilders";
-app.get(WILDERS_PATH, WilderController.findAllWilders);
-app.get(`${WILDERS_PATH}/:id`, WilderController.findWilderById);
-app.post(WILDERS_PATH, WilderController.addWilder);
-app.put(`${WILDERS_PATH}/:id`, WilderController.modifyWilderById);
-app.delete(`${WILDERS_PATH}/:id`, WilderController.deleteWilderById);
+app.get(WILDERS_PATH, findAllWilders);
+app.get(`${WILDERS_PATH}/:id`, findWilderById);
+app.post(WILDERS_PATH, addWilder);
+app.put(`${WILDERS_PATH}/:id`, modifyWilderById);
+app.delete(`${WILDERS_PATH}/:id`, deleteWilderById);
 
-app.post(`${WILDERS_PATH}/:id/skills`, WilderController.addSkills);
+app.post(`${WILDERS_PATH}/:id/skills`, addSkills);
 
 const PORT = 4000;
 
