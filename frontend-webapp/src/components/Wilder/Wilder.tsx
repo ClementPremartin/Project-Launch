@@ -1,5 +1,7 @@
 import Skill from "../Skill/Skill";
 
+import { WilderType } from "../../types";
+
 import {
   Card,
   CardImg,
@@ -11,9 +13,12 @@ import {
 } from "./Wilder_styled";
 import { Paragraph } from "../../styles/base_styles";
 
-import Avatar from "../../assets/avatar.png";
+const Avatar = require("../../assets/avatar.png");
 
-const Wilder = ({ firstname, lastname, skills, description, school }) => {
+type propType = Omit<WilderType, "id">
+
+
+const Wilder = ({ firstname, lastname, skills, description, school }: propType) => {
   return (
     <Card>
       <CityContainer>
@@ -26,7 +31,7 @@ const Wilder = ({ firstname, lastname, skills, description, school }) => {
       <CardSkillsList>
         {skills.map((skill) => (
           <li key={skill.id}>
-            <Skill skill={skill} />
+            <Skill skill_name={skill.skill_name} rate={skill.rate} />
           </li>
         ))}
       </CardSkillsList>

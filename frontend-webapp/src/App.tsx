@@ -1,18 +1,18 @@
-import {
-  Container,
-  Footer,
-  Header,
-  MainContainer,
-  PageTitle,
-} from "./App.styled";
 
 import { Routes, Route } from "react-router-dom";
-
-import { Paragraph } from "./styles/base_styles";
 
 import Home from "./pages/Home/Home";
 import CreateWilder from "./pages/CreateWilder/CreateWilder";
 import Navbar from "./components/Navbar/Navbar";
+
+import { Paragraph } from "./styles/base_styles";
+import {
+Container,
+Footer,
+Header,
+  MainContainer,
+  PageTitle,
+} from "./App.styled";
 
 function App() {
   return (
