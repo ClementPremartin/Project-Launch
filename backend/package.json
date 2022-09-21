@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "nodemon build/index.js",
-    "start:watch": "tsc -w & nodemon dist/build"
+    "build:watch": "tsc --watch",
+    "start": "nodemon ./build/index.js",
+    "start:watch": "tsc -w & nodemon ./build/index.js"
   },
   "author": "clemoufle",
   "license": "ISC",
