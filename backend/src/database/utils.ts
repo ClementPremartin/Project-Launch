@@ -21,7 +21,7 @@ async function getDatabase() {
   return dataSource;
 }
 
-async function getRepository(repo: EntityTarget<ObjectLiteral>) {
+async function getRepository(repo: EntityTarget<any>) {
   return (await getDatabase()).getRepository(repo);
 }
 

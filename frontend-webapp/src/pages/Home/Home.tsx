@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { SectionTitle, CardRow } from "./Home_styled";
-
 import Wilder from "../../components/Wilder/Wilder";
 import Loader from "../../components/Loader/Loader";
 
+import { WilderType } from "../../types";
+
+import { SectionTitle, CardRow } from "./Home_styled";
+
 const Home = () => {
-  const [wildersStudent, setWildersStudent] = useState([]);
+  const [wildersStudent, setWildersStudent] = useState<[] | WilderType[]>([]);
   const [timeOut, setTimeOut] = useState(true);
 
   useEffect(() => {
@@ -20,7 +22,6 @@ const Home = () => {
 
   return (
     <>
-      {console.log(wildersStudent)}
       <SectionTitle>Wilders</SectionTitle>
 
       {timeOut ? (

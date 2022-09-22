@@ -12,28 +12,8 @@ export default class Skill {
     skill_name: string;
 
     @Column()
-    rate: string;
+    rate: number;
 
     @ManyToMany(() => Wilder, (wilder) => wilder.skills)
     wilders: Wilder[];
 }
-
-
-// module.exports = new EntitySchema({
-//     name: "skill",
-//     columns: {
-//         id: {
-//             primary: true,
-//             type: "uuid",
-//             generated: "uuid"
-//         },
-//         skill_name: {
-//             type: "text",
-//             unique: true,
-//         },
-//         rate: {
-//             type: "int",
-//             nullable: true,
-//         }
-//     },
-// });

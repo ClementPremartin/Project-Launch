@@ -1,6 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+
+import { getErrorMessage } from "../../utils";
+
 import {
   FormContainer,
   LabelForm,
@@ -12,6 +15,7 @@ import {
 } from "./FormWilder_styled";
 
 export default function App() {
+  const [, setErrorMessage ]=useState("");
   const {
     register,
     handleSubmit,
@@ -19,17 +23,14 @@ export default function App() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     try {
       await axios.post("/wilders", data);
       console.log(data);
       reset();
       console.log(`${data.firstname} a bien été ajouté`);
-    } catch (err) {
-      throw Error({
-        error:
-          "Impossible de joindre le serveur. Véfifiez votre connexion Internet.",
-      });
+    } catch (error) {
+      setErrorMessage(getErrorMessage(error))
     }
   };
 
@@ -65,7 +66,6 @@ export default function App() {
           <LabelForm htmlFor="city_name">
             Campus
             <SelectForm
-              name="city_name"
               {...register("city_name")}
               className={`form-control ${errors.city_name ? "is-invalid" : ""}`}
             >
