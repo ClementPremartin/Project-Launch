@@ -29,16 +29,16 @@ export default class WilderRepository extends Wilder {
       const philippe =  new Wilder(
             "Philippe",
             "LeBrigant",
-            "Je suis passionné de maquette en allumette et j'apprécie particulièrement lire des mangas.",
             lyonSchool,
+            "Je suis passionné de maquette en allumette et j'apprécie particulièrement lire des mangas.",
             [phpSkill, javaSkill]
         );
 
       const jeanjean = new Wilder(
           "Jeanjean",
           "Bon",
-          "Je suis dev spécialisé dans le html. J'aime compter les étoiles. Je me nourris exclusivement de carotte.",
           brestSchool,
+          "Je suis dev spécialisé dans le html. J'aime compter les étoiles. Je me nourris exclusivement de carotte.",
           [jsSkill, javaSkill, phpSkill]
       );
 
@@ -52,8 +52,7 @@ export default class WilderRepository extends Wilder {
 
 
   static async getWilderById(userId: string): Promise<Wilder | null> {
-    const wilderRepository = await getRepository(Wilder);
-    const finalWilder = wilderRepository.findOne({
+    const finalWilder = this.repository.findOne({
       where: {
         id: userId
       },
@@ -62,10 +61,12 @@ export default class WilderRepository extends Wilder {
   }
 
 
-  static async createWilder(firstname: string, lastname: string, description: string, city_name: string): Promise<Wilder> {
-    const school = await SchoolRepository.getSchoolByCity(city_name);
-
-    const newWilder = this.repository.create({firstname, lastname, description});
+  static async createWilder(firstname: string, lastname: string, description: string, schoolId: string): Promise<Wilder> {
+    const school = await SchoolRepository.getSchoolById(schoolId);
+    if(!school){
+      throw new Error
+    }
+    const newWilder = new Wilder(firstname, lastname, school, description);
     await this.repository.save(newWilder);
 
     return newWilder;
