@@ -1,5 +1,4 @@
 import express from "express";
-import { getDatabase } from "./database/utils";
 import { findAllWilders, findWilderById, addWilder, modifyWilderById, deleteWilderById, addSkills} from "./controller/WilderController";
 import WilderRepository from "./models/Wilder/WilderRepository";
 import SkillRepository from "./models/Skill/SkillRepository";
