@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "start": "nodemon ./build/index.js",
-    "start:watch": "tsc -w & nodemon ./build/index.js"
+    "start": "nodemon ./dist/index.js",
+    "start:watch": "tsc -w & nodemon ./dist/index.js"
   },
   "author": "clemoufle",
   "license": "ISC",
