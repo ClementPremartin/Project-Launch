@@ -33,6 +33,10 @@ export default class SkillRepository extends Skill {
     }
 
 
+  static async getSkills() {
+    return this.repository.find();
+  }
+
   static async getSkillBySkillName(skillName: string) {
     return this.repository.findOneBy({skill_name: skillName});
   }
