@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import { getErrorMessage } from "../../utils";
+import {SchoolType} from "../../types";
 
 import {
   FormContainer,
@@ -15,6 +16,7 @@ import {
 } from "./FormWilder_styled";
 
 export default function App() {
+  const [schools, setSchools] = useState<[]| SchoolType[]>([]);
   const [, setErrorMessage ]=useState("");
   const {
     register,
@@ -22,6 +24,17 @@ export default function App() {
     reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    (async() => {
+      try{
+        const res = await axios.get("/schools");
+        setSchools(res.data);
+      }catch(error){
+        console.log(error)
+      }
+    })();
+  }, [])
 
   const onSubmit = async (data: any) => {
     try {
@@ -63,14 +76,16 @@ export default function App() {
               })}
             />
           </LabelForm>
-          <LabelForm htmlFor="city_name">
+          <LabelForm htmlFor="schoolId ">
             Campus
             <SelectForm
-              {...register("city_name")}
-              className={`form-control ${errors.city_name ? "is-invalid" : ""}`}
+              {...register(("schoolId"), {required: true})}
+              className={`form-control ${errors.schoolId  ? "is-invalid" : ""}`}
             >
-              <option defaultValue="Lyon">Lyon</option>
-              <option value="Brest">Brest</option>
+              <option value="" selected disabled hidden>Sélectionner votre Campus</option>
+              {schools && schools.map((school) =>
+                  <option key={school.id} value={school.id}>{school.city_name}</option>
+              )}
             </SelectForm>
           </LabelForm>
           <LabelForm htmlFor="description">
