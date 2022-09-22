@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 import { getErrorMessage } from "../../utils";
-import {SchoolType} from "../../types";
+import {SchoolType, SkillType} from "../../types";
 
 import {
   FormContainer,
@@ -17,6 +17,7 @@ import {
 
 export default function App() {
   const [schools, setSchools] = useState<[]| SchoolType[]>([]);
+  const [skills, setSkills] = useState<[] | SkillType[]>([]);
   const [, setErrorMessage ]=useState("");
   const {
     register,
@@ -30,6 +31,8 @@ export default function App() {
       try{
         const res = await axios.get("/schools");
         setSchools(res.data);
+        const result = await axios.get("/skills");
+        setSkills(result.data);
       }catch(error){
         console.log(error)
       }
@@ -49,6 +52,8 @@ export default function App() {
 
   return (
     <>
+    {console.log(skills)
+    }
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <CardTitle>Créer un Wilder</CardTitle>
         <CardLabel>
@@ -86,6 +91,15 @@ export default function App() {
               {schools && schools.map((school) =>
                   <option key={school.id} value={school.id}>{school.city_name}</option>
               )}
+            </SelectForm>
+          </LabelForm>
+          <LabelForm htmlFor="skills">
+            Compétences
+            <SelectForm multiple
+              {...register("skills")}>
+                {skills.map((skill) =>
+                  <option key={skill.id} value={skill.id}>{skill.skill_name}</option>
+                )}
             </SelectForm>
           </LabelForm>
           <LabelForm htmlFor="description">
