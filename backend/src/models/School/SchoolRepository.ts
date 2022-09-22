@@ -33,6 +33,10 @@ export default class SchoolRepository extends School {
     return this.repository.findOneBy({city_name: schoolCity});
   }
 
+  static async getSchools(): Promise<School[]> {
+    return this.repository.find();
+  }
+
 
 }
 
