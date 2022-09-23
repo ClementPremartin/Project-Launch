@@ -10,13 +10,14 @@ import {
 Container,
 Footer,
 Header,
-  MainContainer,
-  PageTitle,
+MainContainer,
+PageTitle,
+GlobalContainer
 } from "./App.styled";
 
 function App() {
   return (
-    <>
+    <GlobalContainer>
       <Header>
         <Container>
           <PageTitle>Wilders Book</PageTitle>
@@ -34,7 +35,7 @@ function App() {
           <Paragraph>&copy; 2022 Wild Code School</Paragraph>
         </Container>
       </Footer>
-    </>
+    </GlobalContainer>
   );
 }
 
