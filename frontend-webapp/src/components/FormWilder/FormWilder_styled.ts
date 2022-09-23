@@ -11,7 +11,6 @@ export const FormContainer = styled.form`
   flex-direction: column;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  height: 480px;
   width: 50%;
 `;
 

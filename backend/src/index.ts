@@ -1,6 +1,7 @@
 import express from "express";
-import { getDatabase } from "./database/utils";
 import { findAllWilders, findWilderById, addWilder, modifyWilderById, deleteWilderById, addSkills} from "./controller/WilderController";
+import { findAllSchools } from "./controller/SchoolController";
+import { findAllSkills } from "./controller/SkillsController";
 import WilderRepository from "./models/Wilder/WilderRepository";
 import SkillRepository from "./models/Skill/SkillRepository";
 import SchoolRepository from "./models/School/SchoolRepository";
@@ -13,10 +14,13 @@ app.get("/", (req, res) => {
     res.send("App running on express server!");
 });
 
-
 const WILDERS_PATH = "/wilders";
 app.get(WILDERS_PATH, findAllWilders);
 app.get(`${WILDERS_PATH}/:id`, findWilderById);
+
+app.get(`/schools`, findAllSchools);
+app.get(`/skills`, findAllSkills);
+
 app.post(WILDERS_PATH, addWilder);
 app.put(`${WILDERS_PATH}/:id`, modifyWilderById);
 app.delete(`${WILDERS_PATH}/:id`, deleteWilderById);
