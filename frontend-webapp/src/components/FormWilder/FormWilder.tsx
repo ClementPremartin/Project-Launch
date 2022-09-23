@@ -52,8 +52,6 @@ export default function App() {
 
   return (
     <>
-    {console.log(skills)
-    }
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <CardTitle>Créer un Wilder</CardTitle>
         <CardLabel>
@@ -94,7 +92,7 @@ export default function App() {
             </SelectForm>
           </LabelForm>
           <LabelForm htmlFor="skills">
-            Compétences
+            Skills
             <SelectForm multiple
               {...register("skills")}>
                 {skills.map((skill) =>
