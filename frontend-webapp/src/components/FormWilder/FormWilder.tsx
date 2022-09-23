@@ -50,7 +50,6 @@ export default function App() {
   }, [])
 
   const onSubmit = async (data: any) => {
-    console.log(data);
 
     try {
       await axios.post("/wilders", data);
