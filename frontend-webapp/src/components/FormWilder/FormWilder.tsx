@@ -25,7 +25,6 @@ export default function App() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
 
   const handleOptionsMultiSelect = () => {
