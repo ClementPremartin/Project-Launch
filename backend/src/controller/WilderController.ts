@@ -14,11 +14,11 @@ const findWilderById = async (req: Request, res: Response) => {
 }
 
 const addWilder = async (req: Request, res: Response) => {
-    const {firstname, lastname, description, schoolId} = req.body;
+    const {firstname, lastname, schoolId, skills, description} = req.body;
     if(!firstname || !lastname) {
         res.status(400).json({error: "Firstname and Lastname are required."})
     } else {
-        const newWilder = await WilderRepository.createWilder(firstname, lastname, description, schoolId);
+        const newWilder = await WilderRepository.createWilder(firstname, lastname, schoolId, skills, description);
         res.status(201).send(newWilder);
     }
 }

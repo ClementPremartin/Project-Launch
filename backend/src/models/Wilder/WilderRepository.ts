@@ -30,16 +30,16 @@ export default class WilderRepository extends Wilder {
             "Philippe",
             "LeBrigant",
             lyonSchool,
+            [phpSkill, javaSkill],
             "Je suis passionné de maquette en allumette et j'apprécie particulièrement lire des mangas.",
-            [phpSkill, javaSkill]
         );
 
       const jeanjean = new Wilder(
           "Jeanjean",
           "Bon",
           brestSchool,
+          [jsSkill, javaSkill, phpSkill],
           "Je suis dev spécialisé dans le html. J'aime compter les étoiles. Je me nourris exclusivement de carotte.",
-          [jsSkill, javaSkill, phpSkill]
       );
 
       await this.repository.save([philippe, jeanjean]);
@@ -61,12 +61,33 @@ export default class WilderRepository extends Wilder {
   }
 
 
-  static async createWilder(firstname: string, lastname: string, description: string, schoolId: string): Promise<Wilder> {
+  static async createWilder(firstname: string, lastname: string, schoolId: string, skills: any, description: string,): Promise<Wilder> {
+    //get get wilder school by Id
     const school = await SchoolRepository.getSchoolById(schoolId);
     if(!school){
-      throw new Error
+      throw new Error;
     }
-    const newWilder = new Wilder(firstname, lastname, school, description);
+
+  //add wilder skills in skillArr arr by using getSkillById method
+    const skillArr: Skill[] = [];
+    await Promise.all(skills.map(async(skill: string) =>
+      {
+        console.log(skill);
+        if(!skill){
+          throw new Error
+        }
+        const result = await SkillRepository.getSkillById(skill);
+        if(!result){
+          throw new Error
+        }
+        skillArr.push(result);
+      }));
+
+    //instantiate the new wilder
+    const newWilder = new Wilder(firstname, lastname, school, skillArr, description);
+
+    newWilder.skills = skillArr;
+
     await this.repository.save(newWilder);
 
     return newWilder;

@@ -8,18 +8,16 @@ export default class Wilder {
     firstname: string,
     lastname: string,
     school: School,
+    skills: Skill[],
     description?: string,
-    skills?: Skill[]
   ) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.school = school;
+    this.skills = skills
 
     if(description) {
       this.description = description;
-    }
-    if(skills) {
-      this.skills = skills;
     }
   }
 
