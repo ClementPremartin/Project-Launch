@@ -70,18 +70,20 @@ export default class WilderRepository extends Wilder {
 
   //add wilder skills in skillArr arr by using getSkillById method
     const skillArr: Skill[] = [];
-    await Promise.all(skills.map(async(skill: string) =>
+    console.log(skills);
+
+    await Promise.all(skills.map(async(skill: any) =>
       {
-        console.log(skill);
         if(!skill){
           throw new Error
         }
-        const result = await SkillRepository.getSkillById(skill);
+        const result = await SkillRepository.getSkillById(skill.value);
         if(!result){
           throw new Error
         }
         skillArr.push(result);
       }));
+
 
     //instantiate the new wilder
     const newWilder = new Wilder(firstname, lastname, school, skillArr, description);
