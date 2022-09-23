@@ -7,7 +7,8 @@ export const Container = styled.div`
 `;
 
 export const MainContainer = styled.main`
-  ${baseContainerStyles}
+  ${baseContainerStyles};
+  padding-bottom: 1rem;
 `;
 
 export const Header = styled.header`
@@ -17,9 +18,18 @@ export const Header = styled.header`
 
 export const Footer = styled.footer`
   border-top: 2px solid ${MAIN_THEME_COLOR};
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
 `;
 
 export const PageTitle = styled.h1`
   ${baseTitleStyles}
   font-size: 40px;
+`;
+
+export const GlobalContainer = styled.div`
+  position: relative;
+  min-height: 100vh;
 `;
