@@ -28,12 +28,20 @@ export default function App() {
     formState: { errors },
   } = useForm();
 
-  const handleOptions = () => {
+  const handleOptionsMultiSelect = () => {
     const skillsArr = [];
     for (let i = 0; i<skills.length; i++){
       skillsArr.push({value: skills[i].id, label: skills[i].skill_name});
     }
     return skillsArr;
+  }
+
+  const handleOptionsSingleSelect = () => {
+    const schoolsArr = [];
+    for (let i = 0; i<schools.length; i++){
+      schoolsArr.push({value: schools[i].id, label: schools[i].city_name});
+    }
+    return schoolsArr;
   }
 
   useEffect(() => {
@@ -92,18 +100,22 @@ export default function App() {
           </LabelForm>
           <LabelForm htmlFor="schoolId ">
             Campus
-            <SelectForm
-              {...register(("schoolId"), {required: true})}
-              className={`form-control ${errors.schoolId  ? "is-invalid" : ""}`}
-            >
-              <option selected disabled hidden>Sélectionner votre Campus</option>
-              {schools && schools.map((school) =>
-                  <option defaultValue="Lyon" key={school.id} value={school.id}>{school.city_name}</option>
-              )}
+            <SelectForm>
+            <Controller
+                  name="schoolId"
+                  control={control}
+                  rules={{required: true}}
+                  render={({field}) => <Select
+                    defaultValue={[]}
+                    {...field}
+                    options={handleOptionsSingleSelect()}
+                  />}
+              />
             </SelectForm>
           </LabelForm>
           <LabelForm htmlFor="skills">
             Skills
+            <SelectForm>
             <Controller
               name="skills"
               control={control}
@@ -111,11 +123,12 @@ export default function App() {
               render={({field}) =>
                 <Select {...field}
                     defaultValue={[]}
-                    options={handleOptions()}
+                    options={handleOptionsMultiSelect()}
                     isMulti
                   />
                 }
               />
+            </SelectForm>
           </LabelForm>
           <LabelForm htmlFor="description">
             Description

@@ -54,13 +54,12 @@ export const InputForm = styled.input`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
-export const SelectForm = styled.select`
-  border-radius: 8px;
-  border: none;
-  padding: 8px;
+export const SelectForm = styled.div`
   margin-top: 5px;
   margin-bottom: 10px;
-  background-color: ${SECOND_THEME_COLOR};
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  & :first-child{
+    color: ${FONT_COLOR};
+  }
 `;
 
