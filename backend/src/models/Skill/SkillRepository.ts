@@ -30,6 +30,22 @@ export default class SkillRepository extends Skill {
           skill_name: "PHP",
           rate: 3
         });
+        await this.repository.save({
+          skill_name: "Ruby",
+          rate: 3
+        });
+        await this.repository.save({
+          skill_name: "Postgres",
+          rate: 3
+        });
+        await this.repository.save({
+          skill_name: "React",
+          rate: 5
+        });
+        await this.repository.save({
+          skill_name: "SpringBoot",
+          rate: 4
+        });
     }
 
 
