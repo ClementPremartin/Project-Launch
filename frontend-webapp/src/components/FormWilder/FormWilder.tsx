@@ -27,22 +27,6 @@ export default function App() {
     reset,
   } = useForm();
 
-  const handleOptionsMultiSelect = () => {
-    const skillsArr = [];
-    for (let i = 0; i<skills.length; i++){
-      skillsArr.push({value: skills[i].id, label: skills[i].skill_name});
-    }
-    return skillsArr;
-  }
-
-  const handleOptionsSingleSelect = () => {
-    const schoolsArr = [];
-    for (let i = 0; i<schools.length; i++){
-      schoolsArr.push({value: schools[i].id, label: schools[i].city_name});
-    }
-    return schoolsArr;
-  }
-
   useEffect(() => {
     (async() => {
       try{
@@ -107,7 +91,9 @@ export default function App() {
                   render={({field}) => <Select
                     defaultValue={[]}
                     {...field}
-                    options={handleOptionsSingleSelect()}
+                    options={schools.map((school) => {
+                      return {value: school.id, label: school.city_name}
+                    })}
                   />}
               />
             </SelectForm>
@@ -122,7 +108,9 @@ export default function App() {
               render={({field}) =>
                 <Select {...field}
                     defaultValue={[]}
-                    options={handleOptionsMultiSelect()}
+                    options={skills.map((skill) => {
+                      return {value: skill.id, label: skill.skill_name}
+                    })}
                     isMulti
                   />
                 }
