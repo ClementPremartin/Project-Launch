@@ -61,9 +61,9 @@ export default class WilderRepository extends Wilder {
   }
 
 
-  static async createWilder(firstname: string, lastname: string, schoolId: string, skills: any, description: string,): Promise<Wilder> {
+  static async createWilder(firstname: string, lastname: string, schoolId: any, skills: any, description: string,): Promise<Wilder> {
     //get get wilder school by Id
-    const school = await SchoolRepository.getSchoolById(schoolId);
+    const school = await SchoolRepository.getSchoolById(schoolId.value);
     if(!school){
       throw new Error;
     }
