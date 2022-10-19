@@ -16,6 +16,6 @@ export default class School {
     city_name: string;
 
     @OneToMany(() => Wilder, (wilder) => wilder.school)
-    @Field(() => [School])
+    @Field(() => [Wilder])
     wilders: Wilder[];
 }

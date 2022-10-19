@@ -20,6 +20,6 @@ export default class Skill {
     rate: number;
 
     @ManyToMany(() => Wilder, (wilder) => wilder.skills)
-    @Field(()=> [Skill])
+    @Field(()=> [Wilder])
     wilders: Wilder[];
 }
