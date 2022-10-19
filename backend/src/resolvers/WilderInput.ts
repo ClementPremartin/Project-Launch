@@ -46,9 +46,21 @@ class DeleteWilderByIdArgs {
   id: string
 }
 
+@ArgsType()
+class AddSkillsToWilderArgs {
+  @Field(() => ID)
+  @IsUUID()
+  wilderId: string
+
+  @Field(() => ID)
+  @IsUUID()
+  skillId: string
+}
+
 export {
   AddWilderArgs,
   GetWilderByIdArgs,
   ModifyWilderByIdArgs,
   DeleteWilderByIdArgs,
+  AddSkillsToWilderArgs,
 }
