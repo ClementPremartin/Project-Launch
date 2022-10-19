@@ -1,35 +1,48 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useQuery, gql } from "@apollo/client";
 
 import Wilder from "../../components/Wilder/Wilder";
 import Loader from "../../components/Loader/Loader";
 
-import { WilderType } from "../../types";
+import { WildersQuery } from "../../gql/graphql";
 
 import { SectionTitle, CardRow } from "./Home_styled";
 
-const Home = () => {
-  const [wildersStudent, setWildersStudent] = useState<[] | WilderType[]>([]);
-  const [timeOut, setTimeOut] = useState(true);
+const GET_WILDERS = gql`
+    query Wilders {
+      wilders {
+      id
+      firstname
+      lastname
+      skills {
+        id
+        skill_name
+        rate
+      }
+      description
+      school {
+        id
+        city_name
+      }
+    }
+  }
+`;
 
-  useEffect(() => {
-    (async () => {
-      const response = await axios.get("/wilders");
-      setWildersStudent(response.data);
-      setTimeOut(false);
-    })();
-  }, []);
+const Home = () => {
+  const {data, loading, error } = useQuery<WildersQuery>(
+    GET_WILDERS, {fetchPolicy: "cache-and-network"}
+  )
 
   return (
     <>
       <SectionTitle>Wilders</SectionTitle>
 
-      {timeOut ? (
+      {loading ? (
         <Loader />
-      ) : wildersStudent.length > 0 ? (
+      ) : error ? (error.message)
+      : data?.wilders ? (
         <CardRow>
-          {wildersStudent &&
-            wildersStudent.map((wilder) => (
+          {data?.wilders &&
+            data?.wilders.map((wilder) => (
               <Wilder
                 key={wilder.id}
                 firstname={wilder.firstname}
