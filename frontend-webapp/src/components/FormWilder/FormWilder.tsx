@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import Select from "react-select";
+import { useQuery, gql } from "@apollo/client";
+
+import { SchoolsAndSkillsQuery } from "../../gql/graphql";
 
 import { getErrorMessage } from "../../utils";
-import {SchoolType, SkillType} from "../../types";
 
 import {
   FormContainer,
@@ -16,9 +18,24 @@ import {
   SelectForm,
 } from "./FormWilder_styled";
 
-export default function App() {
-  const [schools, setSchools] = useState<[]| SchoolType[]>([]);
-  const [skills, setSkills] = useState<[] | SkillType[]>([]);
+const GET_WILDER_SCHOOL_AND_SKILLS = gql`
+    query SchoolsAndSkills {
+    skills {
+      id
+      skill_name
+    }
+    schools {
+      id
+      city_name
+    }
+  }
+`;
+
+export default function FormWilder() {
+  const { data } = useQuery<SchoolsAndSkillsQuery>(
+    GET_WILDER_SCHOOL_AND_SKILLS, {fetchPolicy: "cache-and-network"}
+  );
+
   const [, setErrorMessage ]=useState("");
   const {
     control,
@@ -26,19 +43,6 @@ export default function App() {
     handleSubmit,
     reset,
   } = useForm();
-
-  useEffect(() => {
-    (async() => {
-      try{
-        const res = await axios.get("/schools");
-        setSchools(res.data);
-        const result = await axios.get("/skills");
-        setSkills(result.data);
-      }catch(error){
-        console.log(error)
-      }
-    })();
-  }, [])
 
   const onSubmit = async (data: any) => {
 
@@ -91,7 +95,7 @@ export default function App() {
                   render={({field}) => <Select
                     defaultValue={[]}
                     {...field}
-                    options={schools.map((school) => {
+                    options={data?.schools.map((school) => {
                       return {value: school.id, label: school.city_name}
                     })}
                   />}
@@ -108,7 +112,7 @@ export default function App() {
               render={({field}) =>
                 <Select {...field}
                     defaultValue={[]}
-                    options={skills.map((skill) => {
+                    options={data?.skills.map((skill) => {
                       return {value: skill.id, label: skill.skill_name}
                     })}
                     isMulti

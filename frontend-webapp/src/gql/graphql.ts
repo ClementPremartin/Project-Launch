@@ -16,6 +16,8 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  schools: Array<School>;
+  skills: Array<Skill>;
   wilders: Array<Wilder>;
 };
 
@@ -44,10 +46,16 @@ export type Wilder = {
   skills: Array<Skill>;
 };
 
+export type SchoolsAndSkillsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SchoolsAndSkillsQuery = { __typename?: 'Query', skills: Array<{ __typename?: 'Skill', id: string, skill_name: string }>, schools: Array<{ __typename?: 'School', id: string, city_name: string }> };
+
 export type WildersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type WildersQuery = { __typename?: 'Query', wilders: Array<{ __typename?: 'Wilder', id: string, firstname: string, lastname: string, description: string, skills: Array<{ __typename?: 'Skill', id: string, skill_name: string, rate: number }>, school: { __typename?: 'School', id: string, city_name: string } }> };
 
 
+export const SchoolsAndSkillsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SchoolsAndSkills"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"skills"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"skill_name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"schools"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"city_name"}}]}}]}}]} as unknown as DocumentNode<SchoolsAndSkillsQuery, SchoolsAndSkillsQueryVariables>;
 export const WildersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Wilders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"wilders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"skills"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"skill_name"}},{"kind":"Field","name":{"kind":"Name","value":"rate"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"school"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"city_name"}}]}}]}}]}}]} as unknown as DocumentNode<WildersQuery, WildersQueryVariables>;
