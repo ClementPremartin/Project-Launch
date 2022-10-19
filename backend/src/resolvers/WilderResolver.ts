@@ -12,11 +12,11 @@ export default class WilderResolver {
         return WilderRepository.getWilders();
     }
 
-    // @Mutation(() => Wilder)
-    // addWilder(
-    //     @Args() {firstname, lastname, schoolId, skills, description}: AddWilderArgs
-    // ): Promise<Wilder> {
-    //     return WilderRepository.createWilder(firstname, lastname, schoolId, skills, description)
-    // }
+    @Mutation(() => Wilder)
+    addWilder(
+        @Args() {firstname, lastname, schoolId, skills, description}: AddWilderArgs
+    ): Promise<Wilder> {
+        return WilderRepository.createWilder(firstname, lastname, schoolId, skills, description)
+    }
 
 }

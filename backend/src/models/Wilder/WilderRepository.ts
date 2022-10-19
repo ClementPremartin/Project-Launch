@@ -61,10 +61,10 @@ export default class WilderRepository extends Wilder {
   }
 
 
-  static async createWilder(firstname: string, lastname: string, schoolId: {value: string, label: string}, skills: [{value: string, label: string}], description: string): Promise<Wilder> {
+  static async createWilder(firstname: string, lastname: string, schoolId: string, skills: string[], description: string): Promise<Wilder> {
     //get get wilder school by Id
 
-    const school = await SchoolRepository.getSchoolById(schoolId.value);
+    const school = await SchoolRepository.getSchoolById(schoolId);
     if(!school){
       throw new Error;
     }
@@ -72,13 +72,13 @@ export default class WilderRepository extends Wilder {
   //add wilder skills in skillArr arr by using getSkillById method
     const skillArr: Skill[] = [];
 
-    await Promise.all(skills.map(async(skill: {value: string, label: string}) =>
+    await Promise.all(skills.map(async(skill: string) =>
       {
         if(!skill){
           throw new Error
         }
-        console.log(skill.value);
-        const result = await SkillRepository.getSkillById(skill.value);
+        console.log(skill);
+        const result = await SkillRepository.getSkillById(skill);
         if(!result){
           throw new Error
         }

@@ -1,11 +1,6 @@
 import { MinLength } from "class-validator"
 import { ArgsType, Field } from "type-graphql";
 
-class Complex {
-    value: string
-    label: string
-}
-
 @ArgsType()
 class AddWilderArgs {
     @Field()
@@ -18,11 +13,11 @@ class AddWilderArgs {
     @MinLength(1, {message: "Le nom doit faire au minimum 1 caractère de long"})
     lastname: string;
 
-    @Field(() => Complex)
-    schoolId: Complex;
+    @Field(() => String)
+    schoolId: string;
 
-    @Field(() => [Complex])
-    skills: [Complex];
+    @Field(() => [String])
+    skills: string[];
 
     @Field()
     description: string;
