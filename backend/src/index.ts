@@ -3,6 +3,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { buildSchema } from "type-graphql";
 
 import WilderResolver from "./resolvers/WilderResolver";
+import SkillsResolver from "./resolvers/SkillsResolver";
+import SchoolResolver from "./resolvers/SchoolsResolver";
 
 import WilderRepository from "./models/Wilder/WilderRepository";
 import SkillRepository from "./models/Skill/SkillRepository";
@@ -12,7 +14,7 @@ const start = async() => {
 
     const server = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [WilderResolver],
+            resolvers: [WilderResolver, SkillsResolver, SchoolResolver],
         }),
         csrfPrevention: true,
         cache: 'bounded',
