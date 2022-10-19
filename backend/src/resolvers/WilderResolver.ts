@@ -1,9 +1,10 @@
-import { Args, Mutation, Query, Resolver } from 'type-graphql'
+import { Arg, Args, Mutation, Query, Resolver } from 'type-graphql'
 
 import Wilder from '../models/Wilder/WilderEntity'
 import WilderRepository from '../models/Wilder/WilderRepository'
 import {
   AddWilderArgs,
+  DeleteWilderByIdArgs,
   GetWilderByIdArgs,
   ModifyWilderByIdArgs,
 } from './WilderInput'
@@ -43,5 +44,10 @@ export default class WilderResolver {
     { id, firstname, lastname, description }: ModifyWilderByIdArgs,
   ): Promise<Wilder> {
     return WilderRepository.putWilder(id, firstname, lastname, description)
+  }
+
+  @Mutation(() => Wilder)
+  deleteWilder(@Arg('id') id: string): Promise<Wilder> {
+    return WilderRepository.deleteWilder(id)
   }
 }

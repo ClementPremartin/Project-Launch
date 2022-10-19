@@ -23,17 +23,17 @@ import { getErrorMessage } from '../utils'
 //     }
 // }
 
-const modifyWilderById = async (req: Request, res: Response) => {
-  const { id } = req.params
-  const { firstname, lastname, description } = req.body
-  const modifyWilder = await WilderRepository.putWilder(
-    id,
-    firstname,
-    lastname,
-    description,
-  )
-  res.status(200).json(modifyWilder)
-}
+// const modifyWilderById = async (req: Request, res: Response) => {
+//   const { id } = req.params
+//   const { firstname, lastname, description } = req.body
+//   const modifyWilder = await WilderRepository.putWilder(
+//     id,
+//     firstname,
+//     lastname,
+//     description,
+//   )
+//   res.status(200).json(modifyWilder)
+// }
 
 const deleteWilderById = async (req: Request, res: Response) => {
   const { id } = req.params
@@ -67,7 +67,7 @@ const addSkills = async (req: Request, res: Response) => {
 export {
   // findAllWilders,
   // addWilder,
-  modifyWilderById,
+  // modifyWilderById,
   // findWilderById,
   deleteWilderById,
   addSkills,

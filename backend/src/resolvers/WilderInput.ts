@@ -1,4 +1,4 @@
-import { MinLength } from 'class-validator'
+import { IsUUID, MinLength } from 'class-validator'
 import { ArgsType, Field, ID } from 'type-graphql'
 
 @ArgsType()
@@ -33,27 +33,22 @@ class GetWilderByIdArgs {
 }
 
 @ArgsType()
-class ModifyWilderByIdArgs {
-  @Field()
+class ModifyWilderByIdArgs extends AddWilderArgs {
+  @Field(() => ID)
+  @IsUUID()
   id: string
-
-  @Field()
-  @MinLength(1, {
-    message: 'Le prénom doit faire au minimum 1 caractère de long',
-  })
-  firstname: string
-
-  @Field()
-  @MinLength(1, {
-    message: 'Le nom doit faire au minimum 1 caractère de long',
-  })
-  lastname: string
-
-  @Field()
-  @MinLength(10, {
-    message: 'La description doit faire au minimum 10 caractère de long',
-  })
-  description: string
 }
 
-export { AddWilderArgs, GetWilderByIdArgs, ModifyWilderByIdArgs }
+@ArgsType()
+class DeleteWilderByIdArgs {
+  @Field(() => ID)
+  @IsUUID()
+  id: string
+}
+
+export {
+  AddWilderArgs,
+  GetWilderByIdArgs,
+  ModifyWilderByIdArgs,
+  DeleteWilderByIdArgs,
+}
