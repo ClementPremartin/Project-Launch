@@ -1,31 +1,11 @@
 # Work-study live coding 2022-09
 
-## Backend (Node.js API)
+## Getting started
 
-Install dependencies:
+### Run server in dev mode
 
-```
-cd backend
-npm install
-```
-
-Start server in development mode:
+Docker and Docker Compose are required on host system.
 
 ```
-npm run start:watch
-```
-
-## Web app frontend (Create React App)
-
-Install dependencies:
-
-```
-cd frontend-webapp
-npm install
-```
-
-Start server in development mode:
-
-```
-npm run start
+docker-compose -f docker-compose.dev.yml up --build
 ```
