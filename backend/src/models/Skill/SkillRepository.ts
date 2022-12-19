@@ -11,12 +11,12 @@ export default class SkillRepository extends Skill {
   }
 
   static async clearRepository(): Promise<void> {
-    this.repository.clear()
+    this.repository.delete({})
   }
 
   static async initializeSkill(): Promise<void> {
     const wilderRepository = await getRepository(Wilder)
-    await wilderRepository.clear()
+    await wilderRepository.delete({})
     await this.clearRepository()
     await this.repository.save({
       skill_name: 'JS',

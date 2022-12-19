@@ -1,29 +1,25 @@
-import { DataSource, EntityTarget, ObjectLiteral } from "typeorm";
-import Wilder from "../models/Wilder/WilderEntity";
-import School from "../models/School/SchoolEntity";
-import Skill from "../models/Skill/SkillEntity";
+import { DataSource, EntityTarget } from 'typeorm'
 
 const dataSource = new DataSource({
-  type: "sqlite",
-  database: "wilersdb.sqlite",
+  type: 'postgres',
+  url: process.env.DATABASE_URL,
   synchronize: true,
-  entities: [Wilder, School, Skill],
-  logging: ["query", "error"],
-});
+  entities: [__dirname + '/../models/**/*Entity.js'],
+  logging: ['query', 'error'],
+})
 
-let initialized = false;
+let initialized = false
 async function getDatabase() {
   if (!initialized) {
-    await dataSource.initialize();
-    initialized = true;
-    console.log("Successfuly connected to database");
+    await dataSource.initialize()
+    initialized = true
+    console.log('Successfuly connected to database')
   }
-  return dataSource;
+  return dataSource
 }
 
 async function getRepository(repo: EntityTarget<any>) {
-  return (await getDatabase()).getRepository(repo);
+  return (await getDatabase()).getRepository(repo)
 }
 
-export { getDatabase, getRepository };
-
+export { getDatabase, getRepository }
