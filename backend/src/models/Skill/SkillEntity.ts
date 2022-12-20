@@ -1,19 +1,30 @@
-import { Column, Entity, Index, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import Wilder from "../Wilder/WilderEntity";
-
+import { Field, ID, ObjectType } from 'type-graphql'
+import {
+  Column,
+  Entity,
+  Index,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
+import Wilder from '../Wilder/WilderEntity'
 
 @Entity()
+@ObjectType()
 export default class Skill {
-    @PrimaryGeneratedColumn("uuid")
-    id: String;
+  @PrimaryGeneratedColumn('uuid')
+  @Field(() => ID)
+  id: string
 
-    @Column()
-    @Index({unique: true})
-    skill_name: string;
+  @Column()
+  @Index({ unique: true })
+  @Field()
+  skill_name: string
 
-    @Column()
-    rate: number;
+  @Column()
+  @Field()
+  rate: number
 
-    @ManyToMany(() => Wilder, (wilder) => wilder.skills)
-    wilders: Wilder[];
+  @ManyToMany(() => Wilder, (wilder) => wilder.skills)
+  @Field(() => [Wilder])
+  wilders: Wilder[]
 }

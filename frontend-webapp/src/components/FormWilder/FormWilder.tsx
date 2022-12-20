@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import axios from "axios";
-import Select from "react-select";
+import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import Select from 'react-select'
+import { useQuery, useMutation, gql } from '@apollo/client'
 
-import { getErrorMessage } from "../../utils";
-import {SchoolType, SkillType} from "../../types";
+import {
+  SchoolsAndSkillsQuery,
+  CreateWilderMutationVariables,
+  CreateWilderMutation,
+} from '../../gql/graphql'
+
+import { getErrorMessage } from '../../utils'
 
 import {
   FormContainer,
@@ -14,43 +19,79 @@ import {
   Button,
   InputForm,
   SelectForm,
-} from "./FormWilder_styled";
+} from './FormWilder_styled'
 
-export default function App() {
-  const [schools, setSchools] = useState<[]| SchoolType[]>([]);
-  const [skills, setSkills] = useState<[] | SkillType[]>([]);
-  const [, setErrorMessage ]=useState("");
-  const {
-    control,
-    register,
-    handleSubmit,
-    reset,
-  } = useForm();
+const GET_WILDER_SCHOOL_AND_SKILLS = gql`
+  query SchoolsAndSkills {
+    skills {
+      id
+      skill_name
+    }
+    schools {
+      id
+      city_name
+    }
+  }
+`
 
-  useEffect(() => {
-    (async() => {
-      try{
-        const res = await axios.get("/schools");
-        setSchools(res.data);
-        const result = await axios.get("/skills");
-        setSkills(result.data);
-      }catch(error){
-        console.log(error)
-      }
-    })();
-  }, [])
+const CREATE_WILDER = gql`
+  mutation createWilder(
+    $firstname: String!
+    $lastname: String!
+    $schoolId: String!
+    $skills: [String!]!
+    $description: String!
+  ) {
+    addWilder(
+      firstname: $firstname
+      lastname: $lastname
+      schoolId: $schoolId
+      skills: $skills
+      description: $description
+    ) {
+      id
+      firstname
+      lastname
+    }
+  }
+`
+
+export default function FormWilder() {
+  const { data } = useQuery<SchoolsAndSkillsQuery>(
+    GET_WILDER_SCHOOL_AND_SKILLS,
+    { fetchPolicy: 'cache-and-network' },
+  )
+
+  const [createWilder] = useMutation<
+    CreateWilderMutation,
+    CreateWilderMutationVariables
+  >(CREATE_WILDER)
+
+  const [, setErrorMessage] = useState('')
+  const { control, register, handleSubmit, reset } = useForm()
 
   const onSubmit = async (data: any) => {
+    const { firstname, lastname, school, description } = data
+    const schoolId = school.value
 
+    const skills = data.skills.map((skill: { value: string }) => skill.value)
     try {
-      await axios.post("/wilders", data);
-      console.log(data);
-      reset();
-      console.log(`${data.firstname} a bien été ajouté`);
+      await createWilder({
+        variables: {
+          firstname,
+          lastname,
+          schoolId,
+          skills,
+          description,
+        },
+      })
+      console.log(data)
+      reset()
+      console.log(`${data.firstname} a bien été ajouté`)
     } catch (error) {
       setErrorMessage(getErrorMessage(error))
     }
-  };
+  }
 
   return (
     <>
@@ -62,7 +103,7 @@ export default function App() {
             <InputForm
               type="text"
               placeholder="Jeanjean"
-              {...register("firstname", {
+              {...register('firstname', {
                 required: true,
                 minLength: 2,
                 maxLength: 35,
@@ -74,7 +115,7 @@ export default function App() {
             <InputForm
               type="text"
               placeholder="Bon"
-              {...register("lastname", {
+              {...register('lastname', {
                 required: true,
                 minLength: 2,
                 maxLength: 35,
@@ -84,36 +125,39 @@ export default function App() {
           <LabelForm htmlFor="schoolId ">
             Campus
             <SelectForm>
-            <Controller
-                  name="schoolId"
-                  control={control}
-                  rules={{required: true}}
-                  render={({field}) => <Select
+              <Controller
+                name="school"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Select
                     defaultValue={[]}
                     {...field}
-                    options={schools.map((school) => {
-                      return {value: school.id, label: school.city_name}
+                    options={data?.schools.map((school) => {
+                      return { value: school.id, label: school.city_name }
                     })}
-                  />}
+                  />
+                )}
               />
             </SelectForm>
           </LabelForm>
           <LabelForm htmlFor="skills">
             Skills
             <SelectForm>
-            <Controller
-              name="skills"
-              control={control}
-              rules={{required: true}}
-              render={({field}) =>
-                <Select {...field}
+              <Controller
+                name="skills"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
                     defaultValue={[]}
-                    options={skills.map((skill) => {
-                      return {value: skill.id, label: skill.skill_name}
+                    options={data?.skills.map((skill) => {
+                      return { value: skill.id, label: skill.skill_name }
                     })}
                     isMulti
                   />
-                }
+                )}
               />
             </SelectForm>
           </LabelForm>
@@ -122,7 +166,7 @@ export default function App() {
             <InputForm
               type="text"
               placeholder="Ecrivez votre description"
-              {...register("description", {
+              {...register('description', {
                 maxLength: 250,
               })}
             />
@@ -131,6 +175,5 @@ export default function App() {
         </CardLabel>
       </FormContainer>
     </>
-  );
+  )
 }
-
